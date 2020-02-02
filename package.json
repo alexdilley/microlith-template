@@ -1,6 +1,7 @@
 {
   "name": "microlith-template",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
