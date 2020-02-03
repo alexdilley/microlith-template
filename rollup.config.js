@@ -33,6 +33,7 @@ export default {
   input: 'src/main.js',
   output: {
     sourcemap: true,
+    sourcemapExcludeSources: production,
     format: 'iife',
     name: 'app',
     dir: 'dist',
