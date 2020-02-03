@@ -1,8 +1,13 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
+import fs from 'fs';
+import html from '@rollup/plugin-html';
 import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import copy from 'rollup-plugin-copy';
+import css from 'rollup-plugin-css-asset';
 import livereload from 'rollup-plugin-livereload';
+import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
+import Handlebars from 'handlebars';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -30,15 +35,25 @@ export default {
     sourcemap: true,
     format: 'iife',
     name: 'app',
-    file: 'public/build/bundle.js',
+    dir: 'dist',
+    entryFileNames: '[name].[hash].js',
+    assetFileNames: '[name].[hash][extname]',
   },
   plugins: [
+    // All static assets placed in the `public` folder will simply be copied.
+    copy({ targets: [{ src: 'public/**/*', dest: 'dist' }] }),
+
     svelte({
       // Enable run-time checks when not in production.
       dev: !production,
-      // We'll extract any component CSS out into a separate file -- better for
-      // performance.
-      css: css => css.write('public/build/bundle.css'),
+      emitCss: true,
+    }),
+
+    css(), // emit as asset
+
+    html({
+      template: ({ files }) =>
+        Handlebars.compile(fs.readFileSync('src/template.hbs', 'utf8'))(files),
     }),
 
     // If you have external dependencies installed from npm, you'll most likely

@@ -8,9 +8,13 @@
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/global.css" />
-    <link rel="stylesheet" href="/build/bundle.css" />
+    {{#each css}}
+    <link rel="stylesheet" href="/{{fileName}}" />
+    {{/each}}
 
-    <script defer src="/build/bundle.js"></script>
+    {{#each js}}
+    <script defer src="/{{fileName}}"></script>
+    {{/each}}
   </head>
 
   <body></body>
