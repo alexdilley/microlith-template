@@ -1,34 +1,21 @@
 <script>
+  import './styles/index.css';
+
   export let name;
 </script>
 
-<style>
-  main {
-    max-width: 240px;
-    padding: 1em;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 4em;
-    font-weight: 100;
-    color: #ff3e00;
-    text-transform: uppercase;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
-</style>
-
-<main>
-  <h1>Hello {name}!</h1>
-  <p>
+<main
+  class="max-w-xs sm:max-w-none h-screen p-4 m-auto font-sans text-center
+  subpixel-antialiased"
+>
+  <h1 class="my-10 text-6xl font-hairline leading-tight text-primary uppercase">
+    Hello {name}!
+  </h1>
+  <p class="my-4 leading-tight">
     Visit the
-    <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
+    <a href="https://svelte.dev/tutorial" class="text-blue-700">
+      Svelte tutorial
+    </a>
     to learn how to build Svelte apps.
   </p>
 </main>

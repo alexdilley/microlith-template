@@ -6,7 +6,9 @@ import copy from 'rollup-plugin-copy';
 import css from 'rollup-plugin-css-asset';
 import livereload from 'rollup-plugin-livereload';
 import svelte from 'rollup-plugin-svelte';
+import tailwind from 'rollup-plugin-tailwindcss';
 import { terser } from 'rollup-plugin-terser';
+import preprocess from 'svelte-preprocess';
 import Handlebars from 'handlebars';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -47,9 +49,11 @@ export default {
     svelte({
       // Enable run-time checks when not in production.
       dev: !production,
+      preprocess: preprocess({ postcss: true }),
       emitCss: true,
     }),
 
+    tailwind({ input: 'src/styles/index.css', purge: production }),
     css(), // emit as asset
 
     html({
