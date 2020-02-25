@@ -1,7 +1,23 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
+Globals:
+  Function:
+    Runtime: nodejs12.x
+    MemorySize: 1024
+    Timeout: 3
+    Layers:
+      - !Ref SharedLayer
+    Handler: index.handler
+    Environment:
+      Variables:
+        # https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/node-reusing-connections.html
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+
 Resources:
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -36,12 +52,45 @@ Resources:
             Id: website
             S3OriginConfig:
               OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${CfOriginAccessIdentity}
+          - DomainName: !Join
+              - .
+              - - !Ref HttpApi
+                - execute-api
+                - !Ref AWS::Region
+                - amazonaws.com
+            Id: api
+            CustomOriginConfig:
+              OriginSSLProtocols:
+                - TLSv1.2
+              OriginProtocolPolicy: https-only
         DefaultCacheBehavior:
           TargetOriginId: website
           ViewerProtocolPolicy: redirect-to-https
           ForwardedValues:
             QueryString: false
           Compress: true
+        CacheBehaviors:
+          - PathPattern: /api/*
+            TargetOriginId: api
+            ViewerProtocolPolicy: https-only
+            AllowedMethods:
+              - GET
+              - HEAD
+              - OPTIONS
+              - PUT
+              - PATCH
+              - POST
+              - DELETE
+            ForwardedValues:
+              QueryString: true
+              Cookies:
+                Forward: whitelist
+                WhitelistedNames:
+                  - __Host-SID
+            MinTTL: 0
+            MaxTTL: 0
+            DefaultTTL: 0
+            Compress: true
         CustomErrorResponses:
           - ErrorCode: 403
             ErrorCachingMinTTL: 0
@@ -51,6 +100,26 @@ Resources:
         DefaultRootObject: index.html
         Enabled: true
         PriceClass: PriceClass_All
+
+  SharedLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: src/functions/shared/
+      # Layers can be shared by multiple stacks – each referencing a different
+      # version – so version retention is a requirement.
+      RetentionPolicy: Retain
+
+  GetHelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/functions/http/get-hello/
+      Events:
+        ApiEvent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /api/hello
+            Method: get
 
 Outputs:
   CfDistributionId:

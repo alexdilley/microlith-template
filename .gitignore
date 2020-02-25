@@ -1,5 +1,5 @@
 /.aws-sam/
-/node_modules/
+/.env.local
+/.env.*.local
 /dist/
-.env.local
-.env.*.local
+/node_modules/

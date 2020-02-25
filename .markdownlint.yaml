@@ -3,3 +3,6 @@ default: true
 no-inline-html:
   allowed_elements:
     - cite
+# Disable line length restrictions, because editor soft-wrapping is being used
+# instead.
+line-length: false

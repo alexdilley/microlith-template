@@ -4,8 +4,7 @@
 >
 > -- <cite>Marty McFly</cite>
 
-[The Majestic Monolith](https://m.signalvnoise.com/the-majestic-monolith/) built
-with IaC using serverless cloud services.
+[The Majestic Monolith](https://m.signalvnoise.com/the-majestic-monolith/) built with IaC using serverless cloud services.
 
 ## Install
 
