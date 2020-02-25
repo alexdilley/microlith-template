@@ -1,5 +1,5 @@
 {
-  "name": "microlith-template",
+  "name": "microlith",
   "version": "0.0.1",
   "private": true,
   "license": "UNLICENSED",
@@ -13,15 +13,21 @@
     "lint:all:prettier": "yarn lint:prettier '**/*.{css,html,js,json,md,svelte,yaml}'",
     "lint:all:stylelint": "yarn lint:stylelint '**/*.{css,html,svelte}'",
     "lint": "run-s lint:all:*",
-    "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv dist"
+    "build:svelte": "rollup -c",
+    "build:sam": "sam build",
+    "build": "run-p build:*",
+    "start": "sirv dist",
+    "deploy:s3": "s3deploy -config .s3deploy.yaml -region $AWS_REGION -bucket $AWS_WEBSITE_BUCKET_NAME -distribution-id $AWS_DISTRIBUTION_ID -source dist -public-access",
+    "deploy:sam": "sam deploy",
+    "deploy": "node -r dotenv-flow/config bin/deploy"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-html": "^0.1.1",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "cssnano": "^4.1.10",
+    "dotenv-flow": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.10.0",
@@ -36,6 +42,7 @@
     "rollup": "^1.31.1",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-css-asset": "^1.0.2",
+    "rollup-plugin-delete": "^1.2.0",
     "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-svelte": "^5.1.1",
     "rollup-plugin-tailwindcss": "^1.0.0",
@@ -44,7 +51,7 @@
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-recess-order": "^2.0.3",
     "stylelint-config-standard": "^20.0.0",
-    "svelte": "^3.18.2",
+    "svelte": "^3.19.1",
     "svelte-preprocess": "^3.4.0",
     "tailwindcss": "^1.2.0"
   },

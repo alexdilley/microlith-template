@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+require('dotenv-flow').config({ node_env: process.env.ENV });
+const runAll = require('npm-run-all');
+
+if (!process.env.ENV) {
+  console.error('deployment environment not specified');
+  exit(1);
+}
+
+const opts = { stdout: process.stdout };
+
+runAll(['deploy:*'], { ...opts, parallel: true });

@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+
+  CfOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Access S3 bucket content only through CloudFront
+
+  WebsiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebsiteBucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject
+            Effect: Allow
+            Principal:
+              CanonicalUser: !GetAtt CfOriginAccessIdentity.S3CanonicalUserId
+            Resource:
+              - !Sub arn:aws:s3:::${WebsiteBucket}/*
+
+  CfDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !GetAtt WebsiteBucket.RegionalDomainName
+            Id: website
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${CfOriginAccessIdentity}
+        DefaultCacheBehavior:
+          TargetOriginId: website
+          ViewerProtocolPolicy: redirect-to-https
+          ForwardedValues:
+            QueryString: false
+          Compress: true
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ErrorCachingMinTTL: 0
+            ResponsePagePath: /index.html
+            ResponseCode: 200
+        HttpVersion: http2
+        DefaultRootObject: index.html
+        Enabled: true
+        PriceClass: PriceClass_All
+
+Outputs:
+  CfDistributionId:
+    Value: !Ref CfDistribution
+  WebsiteBucketName:
+    Value: !Ref WebsiteBucket

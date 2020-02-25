@@ -6,6 +6,13 @@ module.exports = {
   plugins: ['svelte3'],
   rules: {
     'import/prefer-default-export': 'off',
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'never',
+        alphabetize: { order: 'asc' },
+      },
+    ],
   },
   overrides: [
     {

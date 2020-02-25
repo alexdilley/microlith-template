@@ -1,15 +1,16 @@
 import fs from 'fs';
-import html from '@rollup/plugin-html';
 import commonjs from '@rollup/plugin-commonjs';
+import html from '@rollup/plugin-html';
 import resolve from '@rollup/plugin-node-resolve';
+import Handlebars from 'handlebars';
 import copy from 'rollup-plugin-copy';
 import css from 'rollup-plugin-css-asset';
+import del from 'rollup-plugin-delete';
 import livereload from 'rollup-plugin-livereload';
 import svelte from 'rollup-plugin-svelte';
 import tailwind from 'rollup-plugin-tailwindcss';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
-import Handlebars from 'handlebars';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -43,6 +44,8 @@ export default {
     assetFileNames: '[name].[hash][extname]',
   },
   plugins: [
+    del({ targets: 'dist/*' }),
+
     // All static assets placed in the `public` folder will simply be copied.
     copy({ targets: [{ src: 'public/**/*', dest: 'dist' }] }),
 

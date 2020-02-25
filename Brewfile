@@ -1,0 +1,7 @@
+tap "aws/tap"
+tap "bep/tap"
+brew "awscli"
+brew "aws-sam-cli"
+brew "nodenv"
+brew "s3deploy"
+brew "yarn"
