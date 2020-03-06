@@ -1,12 +1,6 @@
 {
   "name": "shared",
-  "private": true,
   "version": "0.0.1",
-  "workspaces": {
-    "nohoist": [
-      "**"
-    ]
-  },
   "dependencies": {
     "@middy/core": "^1.0.0-beta",
     "@middy/http-error-handler": "^1.0.0-beta",

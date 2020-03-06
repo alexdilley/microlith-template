@@ -3,12 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "license": "UNLICENSED",
-  "workspaces": {
-    "packages": [
-      "src/functions/**"
-    ]
-  },
   "scripts": {
+    "install:shared": "cd src/functions/shared/nodejs && npm i",
+    "postinstall": "run-p install:*",
     "lint:eslint": "eslint --fix",
     "lint:markdownlint": "markdownlint",
     "lint:prettier": "prettier --write --loglevel warn",
@@ -27,6 +24,9 @@
     "deploy:sam": "sam deploy",
     "deploy": "node -r dotenv-flow/config bin/deploy"
   },
+  "dependencies": {
+    "sirv-cli": "^0.4.5"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-html": "^0.1.1",
@@ -44,7 +44,7 @@
     "postcss-import": "^12.0.1",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",
-    "rollup": "^1.31.1",
+    "rollup": "^2.0.0",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-css-asset": "^1.0.2",
     "rollup-plugin-delete": "^1.2.0",
@@ -56,11 +56,8 @@
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-recess-order": "^2.0.3",
     "stylelint-config-standard": "^20.0.0",
-    "svelte": "^3.19.1",
+    "svelte": "^3.19.2",
     "svelte-preprocess": "^3.4.0",
     "tailwindcss": "^1.2.0"
-  },
-  "dependencies": {
-    "sirv-cli": "^0.4.5"
   }
 }
