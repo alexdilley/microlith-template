@@ -109,12 +109,12 @@ Resources:
       # version – so version retention is a requirement.
       RetentionPolicy: Retain
 
-  GetHelloFunction:
+  GetHelloHandler:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/functions/http/get-hello/
       Events:
-        ApiEvent:
+        HttpGet:
           Type: HttpApi
           Properties:
             ApiId: !Ref HttpApi
