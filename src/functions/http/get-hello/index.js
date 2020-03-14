@@ -2,7 +2,7 @@ const middy = require('@middy/core');
 const { use } = require('/opt/middleware');
 
 const handler = middy(async req => {
-  const { name } = req.queryStringParameters;
+  const { name } = req.queryStringParameters || {};
 
   return {
     statusCode: 200,
