@@ -2,9 +2,9 @@
   "name": "shared",
   "version": "0.0.1",
   "dependencies": {
-    "@middy/core": "^1.0.0-beta",
-    "@middy/http-error-handler": "^1.0.0-beta",
-    "@middy/http-header-normalizer": "^1.0.0-beta",
-    "@middy/http-json-body-parser": "^1.0.0-beta"
+    "@middy/core": "^1.0.0",
+    "@middy/http-error-handler": "^1.0.0",
+    "@middy/http-header-normalizer": "^1.0.0",
+    "@middy/http-json-body-parser": "^1.0.0"
   }
 }

@@ -104,10 +104,12 @@ Resources:
   SharedLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      ContentUri: src/functions/shared/
+      ContentUri: src/functions/shared/nodejs
       # Layers can be shared by multiple stacks – each referencing a different
       # version – so version retention is a requirement.
       RetentionPolicy: Retain
+    Metadata:
+      BuildMethod: nodejs12.x
 
   GetHelloHandler:
     Type: AWS::Serverless::Function

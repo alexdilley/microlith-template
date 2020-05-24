@@ -4,8 +4,6 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "install:shared": "cd src/functions/shared/nodejs && npm i",
-    "postinstall": "run-p install:*",
     "lint:eslint": "eslint --fix",
     "lint:markdownlint": "markdownlint",
     "lint:prettier": "prettier --write --loglevel warn",
