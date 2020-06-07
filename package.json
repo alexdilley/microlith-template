@@ -15,7 +15,7 @@
     "lint": "run-s lint:all:*",
     "dev": "rollup -c -w",
     "build:svelte": "rollup -c",
-    "build:sam": "sam build",
+    "build:sam": "sam build --base-dir src/functions",
     "build": "run-p build:*",
     "start": "sirv dist",
     "deploy:s3": "s3deploy -config .s3deploy.yaml -region $AWS_REGION -bucket $AWS_WEBSITE_BUCKET_NAME -distribution-id $AWS_DISTRIBUTION_ID -source dist -public-access",
