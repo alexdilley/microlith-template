@@ -104,10 +104,8 @@ Resources:
   SharedLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
+      LayerName: !Sub ${AWS::StackName}-SharedLayer
       ContentUri: shared/nodejs
-      # Layers can be shared by multiple stacks – each referencing a different
-      # version – so version retention is a requirement.
-      RetentionPolicy: Retain
     Metadata:
       BuildMethod: nodejs12.x
 
