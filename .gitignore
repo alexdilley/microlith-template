@@ -1,6 +1,4 @@
-/.aws-sam/
 /.env.local
 /.env.*.local
-/dist/
 /node_modules/
 /samconfig.toml

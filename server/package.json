@@ -1,0 +1,9 @@
+{
+  "name": "server",
+  "license": "UNLICENSED",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "sam build --base-dir src",
+    "deploy": "sam deploy --stack-name $AWS_STACK_NAME --s3-bucket $AWS_SAM_SOURCE_BUCKET --capabilities CAPABILITY_IAM --region $AWS_REGION"
+  }
+}

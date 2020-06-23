@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable */
+
 require('dotenv-flow').config({ node_env: process.env.ENV });
 const runAll = require('npm-run-all');
 

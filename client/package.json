@@ -1,0 +1,37 @@
+{
+  "name": "client",
+  "license": "UNLICENSED",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c",
+    "start": "sirv dist",
+    "deploy": "s3deploy -config .s3deploy.yaml -region $AWS_REGION -bucket $AWS_WEBSITE_BUCKET_NAME -distribution-id $AWS_DISTRIBUTION_ID -source dist -public-access"
+  },
+  "dependencies": {
+    "sirv-cli": "^1.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-html": "^0.2.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "cssnano": "^4.1.10",
+    "dotenv-flow": "^3.1.0",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "handlebars": "^4.7.6",
+    "npm-run-all": "^4.1.5",
+    "postcss-import": "^12.0.1",
+    "prettier-plugin-svelte": "^1.1.0",
+    "rollup": "^2.18.0",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-css-asset": "^1.0.2",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-livereload": "^1.3.0",
+    "rollup-plugin-svelte": "^5.2.3",
+    "rollup-plugin-tailwindcss": "^1.0.0",
+    "rollup-plugin-terser": "^6.1.0",
+    "svelte": "^3.23.2",
+    "svelte-preprocess": "^3.9.10",
+    "tailwindcss": "^1.4.6"
+  }
+}
