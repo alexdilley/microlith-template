@@ -6,7 +6,7 @@ const httpJsonBodyParser = require('@middy/http-json-body-parser');
 exports.use = (handler, ...middlewares) => {
   handler.use(httpHeaderNormalizer()).use(httpJsonBodyParser());
 
-  middlewares.forEach(middleware => handler.use(middleware));
+  middlewares.forEach((middleware) => handler.use(middleware));
 
   handler.use(httpErrorHandler());
 

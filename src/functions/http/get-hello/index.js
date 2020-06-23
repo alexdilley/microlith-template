@@ -1,7 +1,7 @@
 const middy = require('@middy/core');
 const { use } = require('/opt/nodejs/middleware');
 
-const handler = middy(async req => {
+const handler = middy(async (req) => {
   const { name } = req.queryStringParameters || {};
 
   return {
