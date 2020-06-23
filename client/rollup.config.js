@@ -44,7 +44,7 @@ export default {
     assetFileNames: '[name].[hash][extname]',
   },
   plugins: [
-    del({ targets: 'dist/*' }),
+    del({ targets: 'dist/*', runOnce: true }),
 
     // All static assets placed in the `public` folder will simply be copied.
     copy({ targets: [{ src: 'public/**/*', dest: 'dist' }] }),
