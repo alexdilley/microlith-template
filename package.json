@@ -20,10 +20,12 @@
     "build": "yarn workspaces run build",
     "deploy:client": "yarn workspace client deploy",
     "deploy:server": "yarn workspace server deploy",
-    "deploy": "node -r dotenv-flow/config bin/deploy"
+    "deploy": "dotenv -c $ENV run-p deploy:*"
+  },
+  "dependencies": {
+    "dotenv-cli": "^3.2.0"
   },
   "devDependencies": {
-    "dotenv-flow": "^3.1.0",
     "eslint": "^7.3.1",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
