@@ -1,12 +1,5 @@
 module.exports = {
   singleQuote: true,
+  svelteBracketNewLine: true,
   trailingComma: 'es5',
-  overrides: [
-    {
-      files: 'client/**/*.svelte',
-      options: {
-        svelteBracketNewLine: true,
-      },
-    },
-  ],
 };
