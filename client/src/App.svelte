@@ -4,12 +4,15 @@
   export let name;
 </script>
 
-<main
-  class="max-w-xs sm:max-w-none h-screen p-4 m-auto font-sans text-center
-  subpixel-antialiased"
->
+<style>
+  :global(body) {
+    @apply antialiased font-sans;
+  }
+</style>
+
+<main class="max-w-xs sm:max-w-none h-screen p-4 m-auto text-center">
   <h1 class="my-10 text-6xl font-hairline leading-tight text-primary uppercase">
-    Hello {name}!
+    hello, {name}!
   </h1>
   <p class="my-4 leading-tight">
     Visit the

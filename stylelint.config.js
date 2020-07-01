@@ -7,4 +7,15 @@ module.exports = {
     // Override rules that would interfere with Prettier.
     'stylelint-config-prettier',
   ],
+  rules: {
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: [
+          // CSS module directives.
+          'global',
+        ],
+      },
+    ],
+  },
 };
