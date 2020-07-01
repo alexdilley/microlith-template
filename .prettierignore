@@ -1,1 +1,3 @@
+**/node_modules/**
 /client/dist/
+!/client/src/node_modules/*

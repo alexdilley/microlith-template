@@ -9,7 +9,7 @@
   "scripts": {
     "lint:eslint": "eslint --fix",
     "lint:markdownlint": "markdownlint",
-    "lint:prettier": "prettier --write --loglevel warn",
+    "lint:prettier": "prettier --with-node-modules --write --loglevel warn",
     "lint:stylelint": "stylelint",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.svelte .",
     "lint:all:markdownlint": "yarn lint:markdownlint '**/*.md'",
