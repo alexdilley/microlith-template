@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 
 Globals:
@@ -15,7 +15,7 @@ Globals:
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
 
 Resources:
-  HttpApi:
+  Api:
     Type: AWS::Serverless::HttpApi
 
   WebsiteBucket:
@@ -54,7 +54,7 @@ Resources:
               OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${CfOriginAccessIdentity}
           - DomainName: !Join
               - .
-              - - !Ref HttpApi
+              - - !Ref Api
                 - execute-api
                 - !Ref AWS::Region
                 - amazonaws.com
@@ -117,7 +117,7 @@ Resources:
         HttpGet:
           Type: HttpApi
           Properties:
-            ApiId: !Ref HttpApi
+            ApiId: !Ref Api
             Path: /api/hello
             Method: get
     Metadata:
