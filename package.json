@@ -2,15 +2,10 @@
   "name": "microlith",
   "private": true,
   "license": "UNLICENSED",
-  "workspaces": {
-    "packages": [
-      "client",
-      "server"
-    ],
-    "nohoist": [
-      "client/dimport"
-    ]
-  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "lint:eslint": "eslint --fix",
     "lint:markdownlint": "markdownlint",
