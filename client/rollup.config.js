@@ -23,7 +23,7 @@ function serve() {
         started = true;
 
         // eslint-disable-next-line global-require
-        require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+        require('child_process').spawn('yarn', ['start', '--dev'], {
           stdio: ['ignore', 'inherit', 'inherit'],
           shell: true,
         });
@@ -74,7 +74,7 @@ export default {
     }),
     commonjs(),
 
-    // In dev mode, call `npm run start` once the bundle has been generated.
+    // In dev mode, call `yarn start` once the bundle has been generated.
     !production && serve(),
 
     // Watch the `dist` directory and refresh the browser on changes when not in

@@ -3,9 +3,9 @@
   "license": "UNLICENSED",
   "version": "0.0.0",
   "scripts": {
-    "dev": "rollup -c -w",
     "build": "rollup -c",
-    "start": "sirv dist",
+    "dev": "rollup -c -w",
+    "start": "sirv dist --single",
     "deploy": "s3deploy -config .s3deploy.yaml -region $AWS_REGION -bucket $AWS_WEBSITE_BUCKET_NAME -distribution-id $AWS_DISTRIBUTION_ID -source dist -public-access"
   },
   "dependencies": {
