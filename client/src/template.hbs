@@ -12,7 +12,7 @@
     {{/each}}
 
     {{#each js}}
-    <script defer src="/{{fileName}}"></script>
+    <script type="module" src="/dimport.js?module" data-main="/{{fileName}}"></script>
     {{/each}}
   </head>
 

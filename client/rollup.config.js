@@ -37,7 +37,7 @@ export default {
   output: {
     sourcemap: true,
     sourcemapExcludeSources: production,
-    format: 'iife',
+    format: 'esm',
     name: 'app',
     dir: 'dist',
     entryFileNames: '[name].[hash].js',
@@ -45,6 +45,18 @@ export default {
   },
   plugins: [
     del({ targets: 'dist/*', runOnce: true }),
+
+    // ES Module support.
+    copy({
+      targets: [
+        {
+          src: 'node_modules/dimport/dist/index.mjs',
+          dest: 'dist',
+          rename: 'dimport.js',
+        },
+      ],
+      copyOnce: true,
+    }),
 
     // All static assets placed in the `public` folder will simply be copied.
     copy({ targets: [{ src: 'public/**/*', dest: 'dist' }] }),
