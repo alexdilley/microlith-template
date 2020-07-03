@@ -50,3 +50,11 @@ aws cloudformation describe-stacks --stack-name <value> --query "Stacks[0].Outpu
 # `ENV` represents your deployment stage (typically, `dev`, `staging` or `prod`).
 ENV=<value> yarn run-s build deploy
 ```
+
+## Local sandbox
+
+A local frontend instance can be configured to connect to the remote (AWS-hosted) dev stack via proxy:
+
+```sh
+API_BASE_URL=https://<CfDistributionId>.cloudfront.net yarn dev
+```

@@ -5,11 +5,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv dist --single",
+    "start": "./bin/serve.js",
     "deploy": "s3deploy -config .s3deploy.yaml -region $AWS_REGION -bucket $AWS_WEBSITE_BUCKET_NAME -distribution-id $AWS_DISTRIBUTION_ID -source dist -public-access"
-  },
-  "dependencies": {
-    "sirv-cli": "^1.0.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^13.0.0",
@@ -18,7 +15,9 @@
     "cssnano": "^4.1.10",
     "eslint-plugin-svelte3": "^2.7.3",
     "handlebars": "^4.7.6",
+    "http-proxy-middleware": "^1.0.4",
     "npm-run-all": "^4.1.5",
+    "polka": "^0.5.2",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "rollup": "^2.18.2",
@@ -29,6 +28,7 @@
     "rollup-plugin-svelte": "^5.2.3",
     "rollup-plugin-tailwindcss": "^1.0.0",
     "rollup-plugin-terser": "^6.1.0",
+    "sirv": "^1.0.1",
     "svelte": "^3.23.2",
     "svelte-preprocess": "^3.9.11",
     "tailwindcss": "^1.4.6"
