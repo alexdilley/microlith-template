@@ -12,6 +12,8 @@
 brew bundle --no-lock
 nodenv install -s
 yarn install
+# Silence npm warning about mismatched binaries due to nodenv using a shim.
+npm config set scripts-prepend-node-path auto
 ```
 
 ## Prepare
