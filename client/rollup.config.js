@@ -2,6 +2,7 @@ import fs from 'fs';
 import commonjs from '@rollup/plugin-commonjs';
 import html from '@rollup/plugin-html';
 import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 import Handlebars from 'handlebars';
 import copy from 'rollup-plugin-copy';
 import css from 'rollup-plugin-css-asset';
@@ -12,9 +13,21 @@ import tailwind from 'rollup-plugin-tailwindcss';
 import { terser } from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
 
+const mode = process.env.NODE_ENV;
 const production = !process.env.ROLLUP_WATCH;
 
-function serve() {
+// Environment variables that start with `SVELTE_APP_` will be statically
+// embedded into the client bundle.
+const substitutions = Object.entries(process.env).reduce(
+  (acc, [key, value]) => {
+    if (key.startsWith('SVELTE_APP_')) {
+      return { ...acc, [`process.env.${key}`]: JSON.stringify(value) };
+    }
+    return acc;
+  },
+  {}
+);
+const serve = () => {
   let started = false;
 
   return {
@@ -48,6 +61,11 @@ export default {
 
     // All static assets placed in the `public` folder will simply be copied.
     copy({ targets: [{ src: 'public/**/*', dest: 'dist' }] }),
+
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(mode),
+      ...substitutions,
+    }),
 
     svelte({
       // Enable run-time checks when not in production.
