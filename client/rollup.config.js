@@ -74,7 +74,7 @@ export default {
       emitCss: true,
     }),
 
-    tailwind({ input: 'src/styles/index.css', purge: production }),
+    tailwind({ input: 'src/styles/tailwind.css', purge: production }),
     css(), // emit as asset
 
     html({

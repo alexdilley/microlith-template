@@ -1,11 +1,11 @@
 <script>
-  import './styles/index.css';
-
   export let name;
 </script>
 
-<style>
-  :global(body) {
+<style global>
+  @import './styles/reset.css';
+
+  body {
     @apply antialiased font-sans;
   }
 </style>

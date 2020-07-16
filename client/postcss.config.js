@@ -4,6 +4,7 @@ module.exports = (ctx) => ({
     tailwindcss: true,
     'postcss-preset-env': {
       features: {
+        'focus-visible-pseudo-class': { preserve: false },
         'nesting-rules': true,
       },
     },
