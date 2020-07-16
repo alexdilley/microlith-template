@@ -43,7 +43,7 @@ const serve = () => {
       }
     },
   };
-}
+};
 
 export default {
   input: 'src/main.js',
