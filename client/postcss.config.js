@@ -8,6 +8,6 @@ module.exports = (ctx) => ({
         'nesting-rules': true,
       },
     },
-    cssnano: ctx.env === 'production' ? {} : false,
+    cssnano: ctx.env === 'production' ? { preset: 'default' } : false,
   },
 });

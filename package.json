@@ -16,24 +16,22 @@
     "lint:all:prettier": "yarn lint:prettier '**/*.{css,html,js,json,md,svelte,yaml}'",
     "lint:all:stylelint": "yarn lint:stylelint '**/*.{css,html,svelte}'",
     "lint": "run-s lint:all:*",
-    "dev": "yarn workspace client dev",
-    "build": "yarn workspaces run build",
-    "deploy:client": "yarn workspace client deploy",
-    "deploy:server": "yarn workspace server deploy",
-    "deploy": "dotenv -c $ENV run-p deploy:*"
+    "wsrun": "dotenv -c ${ENV:-development} yarn workspaces run",
+    "dev": "yarn wsrun dev",
+    "build": "yarn wsrun build",
+    "deploy": "yarn wsrun deploy"
   },
   "dependencies": {
     "dotenv-cli": "^3.2.0"
   },
   "devDependencies": {
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "markdownlint-cli": "^0.23.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
-    "prettier-plugin-svelte": "^1.1.0",
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.0.4",

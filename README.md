@@ -28,7 +28,7 @@ sam deploy --guided
 
 (Initial deployment can take up to 20 minutes due to CloudFront distribution.)
 
-Add outputs to `.env.(dev.local|staging|prod)` (select accordingly):
+Add outputs to `.env.(development.local|staging|production)` (select accordingly):
 
 ```sh
 AWS_DISTRIBUTION_ID=<CfDistributionId>
@@ -49,13 +49,13 @@ aws cloudformation describe-stacks --stack-name <value> --query "Stacks[0].Outpu
 ## Deploy
 
 ```sh
-# `ENV` represents your deployment stage (typically, `dev`, `staging` or `prod`).
+# `ENV` represents your deployment stage (typically, `development`, `staging` or `production`).
 ENV=<value> yarn run-s build deploy
 ```
 
 ## Local sandbox
 
-A local frontend instance can be configured to connect to the remote (AWS-hosted) dev stack via proxy:
+A local frontend instance can be configured to connect to the remote (AWS-hosted) development stack via proxy:
 
 ```sh
 API_BASE_URL=https://<CfDistributionId>.cloudfront.net yarn dev

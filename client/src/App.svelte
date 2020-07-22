@@ -2,14 +2,6 @@
   export let name;
 </script>
 
-<style global>
-  @import './styles/reset.css';
-
-  body {
-    @apply antialiased font-sans;
-  }
-</style>
-
 <main class="max-w-xs sm:max-w-none h-screen p-4 m-auto text-center">
   <h1 class="my-10 text-6xl font-hairline leading-tight text-primary uppercase">
     hello, {name}!
