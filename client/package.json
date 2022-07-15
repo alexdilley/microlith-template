@@ -20,7 +20,7 @@
     "prettier-plugin-svelte": "^1.1.0",
     "rollup": "^2.22.2",
     "sirv-cli": "^1.0.3",
-    "svelte": "^3.24.0",
+    "svelte": "^3.49.0",
     "svelte-preprocess": "^4.0.8",
     "tailwindcss": "^1.5.2",
     "vite": "1.0.0-rc.1",
